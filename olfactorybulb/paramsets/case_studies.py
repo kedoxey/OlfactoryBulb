@@ -194,8 +194,7 @@ class OneMsTest(GammaSignature):
     tstop = 1
 
 
-class NMDA_block(GammaSignature):
-    
+class NMDA_block(GammaSignature):  
     description = "Inhibiting NMDA synapses by setting conductance to 0"
 
     def __init__(self):
