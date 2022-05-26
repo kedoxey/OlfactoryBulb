@@ -9,6 +9,7 @@ find . -name x86_64 -exec sudo rm -rif {} || true \;
 # Recompile mod files of all previous models
 cd BhallaBower1993/; nrnivmodl; cd ..;
 cd Birgiolas2020/Mechanisms/; nrnivmodl; cd ../..;
+cd Doxey2022/Mechanisms/; nrnivmodl; cd ../..;
 cd Chen2002/; nrnivmodl; cd ..;
 cd David2008/; nrnivmodl; cd ..;
 cd Davison2000/; nrnivmodl; cd ..;
