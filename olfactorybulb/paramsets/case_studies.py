@@ -192,3 +192,11 @@ class GammaSignature_DifferentOdorConc(GammaSignature):
 class OneMsTest(GammaSignature):
     description = "Test of the simulation, for build testing only"
     tstop = 1
+
+
+class NMDA_block(GammaSignature):
+    
+    description = "Inhibiting NMDA synapses by setting conductance to 0"
+
+    def __init__(self):
+        self.synapse_properties["AmpaNmdaSyn"]["nmdatoggle"] = 0

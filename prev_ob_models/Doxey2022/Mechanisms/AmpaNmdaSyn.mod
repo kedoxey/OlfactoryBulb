@@ -79,7 +79,8 @@ PARAMETER {
 	mg	= 1    (mM)		: external magnesium concentration
 	gmax = 2 (umho)		: normally 2
 	gampafactor = 0.001 (1)
-	nmdafactor = 0.0035 (1)
+	nmdatoggle = 0		: 0 to block nmda
+	nmdafactor = nmdatoggle*0.0035 (1)
 	ltdinvl = 250 (ms)		: longer intervals, no change
 	ltpinvl = 33.33 (ms)		: shorter interval, LTP
 	sighalf = 50 (1)
