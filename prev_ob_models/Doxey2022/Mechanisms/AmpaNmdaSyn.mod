@@ -175,6 +175,10 @@ NET_RECEIVE(weight, s, w, tlast (ms), r0, t0 (ms)) {
 
 		w = weight*plast(s)
 		gampa = gampa + w*gmax*gampafactor
+		# plot iampa and inmda as a function of time, one cell
+		# however many places ampanmdasyn is loaded/used, that's how many synapses there are
+		# you can edit the neuron part to save certain types of data (which are stored in the .dat file)
+		
 		r0 = r0*exp(-Beta*(t - t0))
 		t0 = t
 		synon = synon + w
