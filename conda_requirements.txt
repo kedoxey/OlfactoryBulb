@@ -1,0 +1,12 @@
+Cython>=0.28.1
+jsonpickle>=0.9.6
+matplotlib>=2.2.2
+mpi4py>=3.0.0
+numpy>=1.18.5
+pandas>=1.0.3
+peewee>=3.13.3
+quantities>=0.12.1
+scipy>=1.4.1
+deap>=1.2.2
+pysqlite3>=0.4.3
+
