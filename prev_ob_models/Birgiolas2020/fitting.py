@@ -17,6 +17,7 @@ from pandas import DataFrame
 
 from olfactorybulb.database import *
 from olfactorybulb.neuronunit.models.neuron_cell import NeuronCellModel
+from olfactorybulb.neuronunit.tests.tests import *
 
 SHOW_ERRORS = True
 FAST_EVAL = False
