@@ -48,7 +48,7 @@ BREAKPOINT {
 } 
 
 INITIAL {
-	qt=q10^((celsius-24)/10)
+	qt=q10^((celsius-24(degC))/10(degC))
 	trates(v)
 	m=minf
 }
@@ -58,16 +58,16 @@ DERIVATIVE states {
 	m' = (minf-m)/mtau
 }
 
-PROCEDURE trates(v) {
-	minf = 1/(1 + exp(-(v-21)/10))
-	mtau = betm(v)/(qt*a0m*(1+alpm(v)))
+PROCEDURE trates(v (mV)) {
+	minf = 1/(1 + exp(-(v/1(mV)-21)/10))
+	mtau = betm(v)/(qt*a0m*(1+alpm(v)))*1(ms)
 	mtau = mtau / qt
 }
 
 FUNCTION alpm(v(mV)) {
-    alpm = exp(zetam*(v-vhalfm))
+    alpm = exp(zetam*(v/1(mV)-vhalfm))
 }
 
 FUNCTION betm(v(mV)) {
-    betm = exp(zetam*gmm*(v-vhalfm))
+    betm = exp(zetam*gmm*(v/1(mV)-vhalfm))
 }

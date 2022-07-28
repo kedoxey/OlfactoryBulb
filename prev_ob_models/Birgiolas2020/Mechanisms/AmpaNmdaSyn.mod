@@ -68,6 +68,7 @@ UNITS {
 	(mV) = (millivolt)
 	(umho) = (micromho)
 	(mM) = (milli/liter)
+	(um) = (micron)
 }
 
 PARAMETER {
