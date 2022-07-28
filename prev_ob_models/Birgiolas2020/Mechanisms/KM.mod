@@ -36,7 +36,7 @@ ASSIGNED {
 }
 
 INITIAL {
-	qt=q10^((celsius-35)/10)
+	qt=q10^((celsius-35(degC))/10(degC))
 	rates(v)
 	x = xinf
 }

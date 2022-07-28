@@ -20,7 +20,7 @@ PARAMETER {
     shi = 0
     k_tauH = 1
     q10 = 3
-    celsius
+    celsius  (degC)
 } 
  
 STATE { 
@@ -39,7 +39,7 @@ ASSIGNED {
 } 
  
 INITIAL {
-    qt=q10^((celsius-35)/10)
+    qt=q10^((celsius-35(degC))/10(degC))
     rates(v)
     m = minf
     h = hinf

@@ -12,7 +12,7 @@ NEURON {
 PARAMETER {
 	gbar = 0.0002   	(mho/cm2)	
 								
-	celsius
+	celsius  (degC)
 	ek	= -70	(mV)            : must be explicitly def. in hoc
 	v 		(mV)
 	a0m=0.04
@@ -58,7 +58,7 @@ BREAKPOINT {
 } 
 
 INITIAL {
-	qt=q10^((celsius-24)/10)
+	qt=q10^((celsius-24(degC))/10(degC))
 	trates(v)
 	m=minf  
 	h=hinf  
@@ -70,26 +70,26 @@ DERIVATIVE states {
     h' = (hinf-h)/htau
 }
 
-PROCEDURE trates(v) {  
-	minf = 1/(1 + exp(-(v-sha-7.6)/14))
-	mtau = betm(v)/(qt*a0m*(1+alpm(v)))
+PROCEDURE trates(v (mV)) {  
+	minf = 1/(1 + exp(-(v/1(mV)-sha-7.6)/14))
+	mtau = betm(v)/(qt*a0m*(1+alpm(v)))*1(ms)
 
-	hinf = 1/(1 + exp((v-shi+47.4)/6))
-	htau = k_tauH*beth(v)/(qt*a0h*(1+alph(v)))
+	hinf = 1/(1 + exp((v/1(mV)-shi+47.4)/6))
+	htau = k_tauH*beth(v)/(qt*a0h*(1+alph(v)))*1(ms)
 }
 
 FUNCTION alpm(v(mV)) {
-	alpm = exp(zetam*(v-vhalfm))
+	alpm = exp(zetam*(v/1(mV)-vhalfm))
 }
 
 FUNCTION betm(v(mV)) {
-    betm = exp(zetam*gmm*(v-vhalfm))
+    betm = exp(zetam*gmm*(v/1(mV)-vhalfm))
 }
 
 FUNCTION alph(v(mV)) {
-    alph = exp(zetah*(v-vhalfh-sh_tauH))
+    alph = exp(zetah*(v/1(mV)-vhalfh-sh_tauH))
 }
 
 FUNCTION beth(v(mV)) {
-    beth = exp(zetah*gmh*(v-vhalfh-sh_tauH))
+    beth = exp(zetah*gmh*(v/1(mV)-vhalfh-sh_tauH))
 }

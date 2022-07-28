@@ -23,7 +23,7 @@ PARAMETER {
 	sha  =  0   (mV)
 	shi  =  -3   (mV) : -3 !!!
 	tauM = 10   (ms) : 10
-	celsius
+	celsius    (degC)
 	q10 = 3
 } 
 
@@ -42,7 +42,7 @@ STATE {
 }
 
 INITIAL {
-	qt=q10^((celsius-35)/10)
+	qt=q10^((celsius-35(degC))/10(degC))
 	Rates(v) 
 	m = minf
 	h = hinf
@@ -62,7 +62,7 @@ DERIVATIVE states {
 
 UNITSOFF
  
-PROCEDURE Rates(v) { 
+PROCEDURE Rates(v (mV)) { 
 	minf  = 1 / ( 1 + exp( -(v + 34 - sha) / 6.5 ) )
 	mtau  = tauM / qt
 	hinf = 1 / ( 1 + exp((v + 65 - shi) / 6.6 ))

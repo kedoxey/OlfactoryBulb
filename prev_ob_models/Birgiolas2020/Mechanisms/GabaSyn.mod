@@ -40,6 +40,7 @@ UNITS {
 	(nA) = (nanoamp)
 	(mV) = (millivolt)
 	(uS) = (microsiemens)
+	(um) = (micron)
 }
 
 PARAMETER {

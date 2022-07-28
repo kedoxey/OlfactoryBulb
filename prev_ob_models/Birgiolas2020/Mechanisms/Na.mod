@@ -24,8 +24,8 @@ PARAMETER {
 	thi2 = -45 	(mV)		: v 1/2 for inact
 	qd   = 1.5	(mV)	    : inact tau slope
 	qg   = 1.5  (mV)
-	mmin = 0.02
-	hmin = 0.5
+	mmin = 0.02 (ms)
+	hmin = 0.5  (ms)
 	q10  = 2.0
 	Rg   = 0.01 	(/ms)	: inact recov (v)
 	Rd   = .03 	(/ms)		: inact (v)	
@@ -34,8 +34,9 @@ PARAMETER {
 	qinf  = 4 	(mV)		: inact inf slope 
 
 	ena		(mV)            : must be explicitly def. in hoc
-	celsius
+	celsius     (degC)
 	v 		(mV)
+
 }
 
 
@@ -64,7 +65,7 @@ BREAKPOINT {
 } 
 
 INITIAL {
-    qt=q10^((celsius-24)/10)
+    qt=q10^((celsius-24(degC))/10(degC))
 	trates(v,sh)
 	m=minf  
 	h=hinf
@@ -76,13 +77,13 @@ DERIVATIVE states {
     h' = (hinf-h)/htau
 }
 
-PROCEDURE trates(vm,sh2) {  
+PROCEDURE trates(vm (mV),sh2 (mV)) {  
     LOCAL  a, b
 
 	a = trap0( vm, tha+sh2,Ra,qa)
 	b = trap0(-vm,-tha-sh2,Rb,qa)
 
-	mtau = 1/(a+b)/qt
+	mtau = 1(ms)/(a+b)/qt
 
     if (mtau < mmin) {
         mtau=mmin
@@ -93,7 +94,7 @@ PROCEDURE trates(vm,sh2) {
 	a = trap0( vm, thi1+sh2,Rd,qd)
 	b = trap0(-vm,-thi2-sh2,Rg,qg)
 
-	htau =  1/(a+b)/qt
+	htau =  1(ms)/(a+b)/qt
 
     if (htau<hmin) {
         htau=hmin
@@ -102,11 +103,11 @@ PROCEDURE trates(vm,sh2) {
 	hinf = 1/(1+exp((vm-thinf-sh2)/qinf))
 }
 
-FUNCTION trap0(v,th,a,q) {
-	if (fabs(v-th) > 1e-6) {
-	        trap0 = a * (v - th) / (1 - exp(-(v - th)/q))
+FUNCTION trap0(v (mV),th (mV),a (/ms),q (mV)) {
+	if (fabs((v-th)/1(mV)) > 1e-6) {
+	        trap0 = a*1(ms) * ((v - th)/1(mV)) / (1 - exp(-(v - th)/q))
 	} else {
-	        trap0 = a * q
+	        trap0 = a*1(ms) * (q/1(mV))
  	}
 }	
 
