@@ -252,7 +252,7 @@ dependencies:
     - neo==0.5.2
     - networkx==2.6.3
     - neuromllite==0.5.1
-    - neuron==8.2.0
+    - neuron==7.8.2
     - numexpr==2.8.3
     - ordered-set==4.1.0
     - patsy==0.5.2
