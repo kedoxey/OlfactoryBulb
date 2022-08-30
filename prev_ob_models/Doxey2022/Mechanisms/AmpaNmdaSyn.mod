@@ -68,6 +68,7 @@ UNITS {
 	(mV) = (millivolt)
 	(umho) = (micromho)
 	(mM) = (milli/liter)
+	(um) = (micron)
 }
 
 PARAMETER {
@@ -79,8 +80,8 @@ PARAMETER {
 	mg	= 1    (mM)		: external magnesium concentration
 	gmax = 2 (umho)		: normally 2
 	gampafactor = 0.001 (1)
-	nmdatoggle = 0		: 0 to block nmda
-	nmdafactor = nmdatoggle*0.0035 (1)
+	nmdatoggle = 1		: 0 to block nmda
+	nmdafactor = 0.0035 (1)
 	ltdinvl = 250 (ms)		: longer intervals, no change
 	ltpinvl = 33.33 (ms)		: shorter interval, LTP
 	sighalf = 50 (1)
@@ -117,7 +118,7 @@ INITIAL {
 
 BREAKPOINT {
 	SOLVE release METHOD cnexp
-	gnmda = mgblock(v)*(Ron + Roff)*gmax*nmdafactor
+	gnmda = mgblock(v)*(Ron + Roff)*gmax*nmdafactor*nmdatoggle
 	inmda = gnmda*(v - E)
 	iampa = gampa*(v - E)
 	i = iampa + inmda
@@ -175,10 +176,6 @@ NET_RECEIVE(weight, s, w, tlast (ms), r0, t0 (ms)) {
 
 		w = weight*plast(s)
 		gampa = gampa + w*gmax*gampafactor
-		# plot iampa and inmda as a function of time, one cell
-		# however many places ampanmdasyn is loaded/used, that's how many synapses there are
-		# you can edit the neuron part to save certain types of data (which are stored in the .dat file)
-		
 		r0 = r0*exp(-Beta*(t - t0))
 		t0 = t
 		synon = synon + w
