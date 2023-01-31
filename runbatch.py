@@ -16,6 +16,8 @@ paramsets = [
 
 # Always run at least two processes (NEURON seg faults with <2)
 cores = str(max(2, multiprocessing.cpu_count()))
+if cores is not "2":
+    cores = str(int(cores)//2)
 
 for i, params in enumerate(paramsets):
     print('Starting paramset: ' + params + ' (%s/%s)...' % (i+1, len(paramsets)))
