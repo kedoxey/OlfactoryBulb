@@ -7,11 +7,12 @@ The paramsets array should contain class names found in: [repo]/olfactorybulb/pa
 import os, multiprocessing
 
 paramsets = [
-    "GammaSignature",
-    "GammaSignature_NoInhibition",
-    "GammaSignature_NoTCGJs",
-    "GammaSignature_NoMCGJs",
-    "GammaSignature_EqualTCMCInputs"
+    #"GammaSignature",
+    #"GammaSignature_NoInhibition",
+    #"GammaSignature_NoTCGJs",
+    #"GammaSignature_NoMCGJs",
+    #"GammaSignature_EqualTCMCInputs",
+    "NMDA_block"
 ]
 
 # Always run at least two processes (NEURON seg faults with <2)
