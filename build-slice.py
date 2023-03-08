@@ -22,14 +22,22 @@ def build_slice():
     """
 
 
-    import os
+    import os, sys, argparse
     from olfactorybulb.slicebuilder.nrn import SliceBuilderNRN
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('-n', '--name', dest='name', help='Name of slice')
+    parser.add_argument('-mc', dest='max_mc', help='max number of mitral cells')
+    parser.add_argument('-gc', dest='max_gc', help='max number of granule cells')
+
+    args = parser.parse_args()
 
     # Start NRN and the addon
     sbn = SliceBuilderNRN()
 
     # Start Blender and build the model
-    os.system("blender blender-files/ob-gloms-fast.blend --python olfactorybulb/slicebuilder/blender.py")
+    os.system(f"blender blender-files/ob-gloms-fast.blend --python olfactorybulb/slicebuilder/blender.py -n {args.name} -mc {args.max_mc} -gc {args.max_gc}")
 
 if __name__ == '__main__':
     build_slice()

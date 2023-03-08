@@ -4,7 +4,7 @@ bulbar layers. Transformed cell coordinates are saved for later instatiation by 
 Synapse locations are identified and saved into synapse set files.
 """
 
-import bpy, sys, os, time, re
+import bpy, sys, os, time, re, argparse
 import random
 import os, sys
 import bpy
@@ -27,6 +27,15 @@ Kikuta et. al. 2013 - TC soma distance from Glom center ~200 um
 Witman and Greer 2007 - GC spine reach - from digitized figure 5.5 um
 '''
 
+parser = argparse.ArgumentParser()
+
+parser.add_argument('-n', '--name', dest='name', help='Name of slice')
+parser.add_argument('-mc', dest='max_mc', help='max number of mitral cells', type=int)
+parser.add_argument('-gc', dest='max_gc', help='max number of granule cells', type=int)
+
+args = parser.parse_args()
+
+
 def auto_start(scene):
     """
     A Blender startup script that starts the SliceBuilder on Blender startup
@@ -39,7 +48,7 @@ def auto_start(scene):
     sys.path.append(os.getcwd())
 
     # Create a slice builder class
-    sbb = bpy.types.Object.SliceBuilder = SliceBuilderBlender()
+    sbb = bpy.types.Object.SliceBuilder = SliceBuilderBlender(slice_object_name=args.name, max_mcs=args.max_mc, max_gcs=args.max_gc)
 
     # from line_profiler import LineProfiler
     # lp = LineProfiler()
