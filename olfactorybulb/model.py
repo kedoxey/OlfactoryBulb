@@ -6,7 +6,7 @@ except:
 import os
 import numpy as np
 import json
-from prev_ob_models.Birgiolas2020.isolated_cells import *
+from prev_ob_models.Doxey2022.isolated_cells import *
 from blenderneuron.nrn.neuronnode import NeuronNode
 from olfactorybulb.database import Odor, OdorGlom, CellModel, database
 from math import pow

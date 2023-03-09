@@ -7,7 +7,7 @@ The paramsets array should contain class names found in: [repo]/olfactorybulb/pa
 import os, multiprocessing
 
 paramsets = [
-    #"GammaSignature",
+    "GammaSignature",
     #"GammaSignature_NoInhibition",
     #"GammaSignature_NoTCGJs",
     #"GammaSignature_NoMCGJs",
